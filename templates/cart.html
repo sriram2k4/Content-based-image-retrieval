@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Cart</title>
+</head>
+<body>
+    <h1>My Cart</h1>
+    {% if cart_items %}
+        <ul>
+            {% for product in cart_items %}
+                <li>
+                    <img src="{{ product['image_url'] }}" alt="{{ product['name'] }}" width="100">
+                    <h3>{{ product['name'] }}</h3>
+                    <p>Price: ₹{{ product['price'] }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+        <h3>Total: ₹{{ total }}</h3>
+        <a href="{{ url_for('clear_cart') }}">Clear Cart</a>
+    {% else %}
+        <p>Your cart is empty.</p>
+    {% endif %}
+</body>
+</html>
